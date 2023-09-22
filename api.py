@@ -13,35 +13,35 @@ class PhraseImage(BaseModel):
 class Image(BaseModel):
     image_url: str
 
-@app.post("/kosmos/multimodal_grounding/")
+@app.post("/kosmos/create/multimodal_grounding/")
 async def multimodal_grounding(data: PhraseImage):
     return kosmos.multimodal_grounding(data.phrase, data.image_url)
 
-@app.post("/kosmos/referring_expression_comprehension/")
+@app.post("/kosmos/create/referring_expression_comprehension/")
 async def referring_expression_comprehension(data: PhraseImage):
     return kosmos.referring_expression_comprehension(data.phrase, data.image_url)
 
-@app.post("/kosmos/referring_expression_generation/")
+@app.post("/kosmos/create/referring_expression_generation/")
 async def referring_expression_generation(data: PhraseImage):
     return kosmos.referring_expression_generation(data.phrase, data.image_url)
 
-@app.post("/kosmos/grounded_vqa/")
+@app.post("/kosmos/create/grounded_vqa/")
 async def grounded_vqa(data: PhraseImage):
     return kosmos.grounded_vqa(data.phrase, data.image_url)
 
-@app.post("/kosmos/grounded_image_captioning/")
+@app.post("/kosmos/create/grounded_image_captioning/")
 async def grounded_image_captioning(data: Image):
     return kosmos.grounded_image_captioning(data.image_url)
 
-@app.post("/kosmos/grounded_image_captioning_detailed/")
+@app.post("/kosmos/create/grounded_image_captioning_detailed/")
 async def grounded_image_captioning_detailed(data: Image):
     return kosmos.grounded_image_captioning_detailed(data.image_url)
 
-@app.post("/kosmos/generate_boxes/")
+@app.post("/kosmos/create/generate_boxes/")
 async def generate_boxes(data: PhraseImage):
     return kosmos.generate_boxees(data.phrase, data.image_url)
 
-@app.get("/kosmos/inference/")
+@app.get("/kosmos/create/")
 async def inference():
     return {"message": "Kosmos is ready for inference"}
 
