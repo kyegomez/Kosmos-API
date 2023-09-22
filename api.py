@@ -2,10 +2,12 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from exa import Kosmos
 
-
+#init
 app = FastAPI()
 kosmos = Kosmos()
 
+
+#schemas
 class PhraseImage(BaseModel):
     phrase: str
     image_url: str
@@ -13,6 +15,9 @@ class PhraseImage(BaseModel):
 class Image(BaseModel):
     image_url: str
 
+
+
+#routes
 @app.post("/kosmos/create/multimodal_grounding/")
 async def multimodal_grounding(data: PhraseImage):
     return kosmos.multimodal_grounding(data.phrase, data.image_url)
@@ -40,6 +45,14 @@ async def grounded_image_captioning_detailed(data: Image):
 @app.post("/kosmos/create/generate_boxes/")
 async def generate_boxes(data: PhraseImage):
     return kosmos.generate_boxees(data.phrase, data.image_url)
+
+@app.post("/kosmos/get_image")
+async def get_image(data: Image):
+    return kosmos.get_image(data.image_url)
+
+@app.post("/kosmos/run")
+async def run(data: PhraseImage):
+    return kosmos.run(data.phrase, data.image_url)
 
 @app.get("/kosmos/create/")
 async def inference():
