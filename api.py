@@ -15,8 +15,6 @@ class PhraseImage(BaseModel):
 class Image(BaseModel):
     image_url: str
 
-
-
 #routes
 @app.post("/kosmos/create/multimodal_grounding/")
 async def multimodal_grounding(data: PhraseImage):
